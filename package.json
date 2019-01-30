@@ -8,5 +8,18 @@
     "start": "node server.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NicolaosJM/HandlebarBurgers-.git"
+  },
+  "bugs": {
+    "url": "https://github.com/NicolaosJM/HandlebarBurgers-/issues"
+  },
+  "homepage": "https://github.com/NicolaosJM/HandlebarBurgers-#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "express-handlebars": "^3.0.0",
+    "mysql": "^2.16.0"
+  }
 }

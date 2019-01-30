@@ -1,0 +1,10 @@
+.h1 {
+    text-align: center;
+    padding: 10px;
+}
+
+
+.mealNames {
+    padding: 5px;
+    border: 1px, solid, black; 
+}
