@@ -12,7 +12,7 @@ router.get("/", function (request, response) {
 });
 
 router.put("/api/update/:id", function (request, response) {
-    console.log("success to here")
+    console.log("success to here", request.params.id)
     // var condition = " id = " + request.params.id;
     // console.log("condition", condition);
 
@@ -27,19 +27,18 @@ router.put("/api/update/:id", function (request, response) {
     // });
     burger.update(request.params.id, function (result) {
         console.log(result);
-        response.redirect('/');
+        response.render("index", {burgers: result});
     });
 });
 
-router.post("/api/create", function (request, reponse) {
+router.post("/api/create", function (request, response) {
     burger.create([
-        "burger_name",
-        "devoured"
+        "burger_name"
     ], [
-            request.body.burger_name,
-            request.body.devoured
+            request.body.burger_name
         ], function (result) {
-            res.json({ id: result.insertId });
+            console.log(result);
+            response.json({ id: result.insertId });
         });
 });
 

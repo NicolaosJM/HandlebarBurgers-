@@ -1,34 +1,34 @@
 var connection = require("./connection.js");
 
-// function printQuestionMarks(number) {
-//     var array = [];
+function printQuestionMarks(number) {
+    var array = [];
 
-//     for (var i = 0; i < number; i++) {
-//         array.push("?");
-//     }
+    for (var i = 0; i < number; i++) {
+        array.push("?");
+    }
 
-//     return array.toString();
-// }
+    return array.toString();
+}
 
-// function objectToSql(object) {
-//     var array = [];
+function objectToSql(object) {
+    var array = [];
 
-//     for (var key in object) {
-//         var value = object[key];
+    for (var key in object) {
+        var value = object[key];
 
-//         if (Object.hasOwnProperty.call(object, key)) {
+        if (Object.hasOwnProperty.call(object, key)) {
 
-//             if (typeof value === "string" && value.indexOf(" ") >= 0) {
-//                 value = "'" + value + "'";
+            if (typeof value === "string" && value.indexOf(" ") >= 0) {
+                value = "'" + value + "'";
 
-//             }
+            }
 
-//             array.push(key + "=" + value);
-//         }
-//     }
+            array.push(key + "=" + value);
+        }
+    }
 
-//     return array.toString();
-// }
+    return array.toString();
+}
 
 var orm = {
     all: function (tableInput, callback) {
@@ -54,16 +54,46 @@ var orm = {
         });
     },
 
-    create: function (burger_name, callback) {
-        var queryString = "INSERT INTO burgers (burger_name) VALUES (?)";
-        connection.query(queryString, [burger_name], function (error, result) {
-            if (error) {
-                throw error;
-            }
-            callback(result);
-        });
+    create: function (table, columns, values, callback) {
+        var queryString = "INSERT INTO " + table;
 
+        queryString += " (";
+        queryString += columns.toString();
+        queryString += ") ";
+        queryString += "VALUES (";
+        queryString += printQuestionMarks(values.length);
+        queryString += ") ";
+    
         console.log(queryString);
+    
+        connection.query(queryString, values, function(err, result) {
+          if (err) {
+            throw err;
+          }
+    
+          callback(result);
+        });
+     
+     
+     
+     
+        // var queryString = ("INSERT INTO burgers (burger_name) VALUES (?) ;");
+        // connection.query(queryString, [burger_name], function (error, result) {
+        //     if (error) {
+        //         throw error;
+        //     }
+        //     callback(result);
+        // });
+
+        // console.log(queryString);
+
+
+
+        //
+
+
+
+
 
         // connection.query(queryString, values, function (error, result) {
         //     if (error) {

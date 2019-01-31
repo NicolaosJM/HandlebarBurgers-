@@ -1,4 +1,4 @@
-<h1>Food Diary</h1>
+<h1><i class="fas fa-carrot"></i>Food Diary<i class="fas fa-drumstick-bite"></i></h1>
 
 <h2>Create a food diary to track your daily calorie intake.</h2>
 <div class="container">
@@ -13,9 +13,9 @@
                                 <p class="mealNames">{{this.burger_name}}</p>
                             </div>
                             <div class="col-s-2">
-                                <form method="PUT" action="/api/update/{{this.id}}?_method=PUT">
-                                    <input type="hidden" name="devoured" type="text" value="true">
-                                    <button type="submit" class="btn btn-warning change-devoured-state">Eaten</button>
+                                <form>            
+                                    <input type="hidden" value="true" name="devoured" type="text">                                     {{!--  --}}
+                                    <button type="submit" class="btn btn-warning change-devoured-state" data-id="{{id}}" data-devoured="{{devoured}}">Eaten</button>
                                 </form>
                             </div>
                         {{/unless}}
